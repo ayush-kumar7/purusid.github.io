@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FrBlob</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            padding: 10px;
+            background-color: #f6f6f6;
+            overflow: hidden;
+        }
+
+        #filetext {
+            width: 45%;
+            font: 17px Calibri;
+            height: 100vh;
+            float: left;
+            background-color: white;
+        }
+
+        input[type=button] {
+            font: 17px Calibri;
+            width: auto;
+            float: right;
+            cursor: pointer;
+            padding: 7px;
+        }
+
+        iframe {
+            float: right;
+            width: 45%;
+            height: 75vh;
+            top: 0;
+            left: 50vw;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FrBlob</h1>
+    <div style="background-color:black">
+        <div style="background-color: black;">
+            <div contenteditable id="filetext" name="purusidtextfile" placeholder="YOUR TEXT HERE" style="height:75vh;overflow: scroll;">
+            </div>
+            <iframe id="output"></iframe>
+        </div>
+        <div>
+            <input type="button" id="bt" value="Save data to file" onclick="saveFile()" />
+            <button onclick="cachefile()">Cache File</button>
+            <input id="filename" placeholder="CACHE FILE NAME">
+            <button onclick="getstored()">Get cached file</button>
+            <button id="run">RUN AS HTML</button>
+        </div>
+    </div>
+</body>
+<script>
+    const first = document.getElementById('filetext');
+    const iframe = document.querySelector("iframe");
+    const btn = document.getElementById('run');
+
+    btn.addEventListener("click", () => {
+        var html = first.textContent;
+        iframe.src = "data:text/html;charset=utf-8," + encodeURI(html);
+    });
+
+
+    first.addEventListener('keyup', () => {
+        var html = first.textContent;
+        iframe.src = "data:text/html;charset=utf-8," + encodeURI(html);
+    })
+
+    first.addEventListener("paste", function (e) {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertText", false, text);
+    });
+    let saveFile = () => {
+
+        // Get the data from each element on the form.
+        const file = document.getElementById('filetext').value;
+
+        // This variable stores all the data.
+        let data = file;
+
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([data], { type: 'text/plain' });
+        const sFileName = '.txt';	   // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click();
+    }
+    function cachefile() {
+        let cachename = document.getElementById('filename').value;
+        let data = document.getElementById('filetext').innerHTML;
+        localStorage.setItem(cachename, data);
+    }
+    function getstored() {
+        let cachename = document.getElementById('filename').value;
+        let data = localStorage.getItem(cachename);
+        document.getElementById('filetext').innerHTML = data;
+    }
+</script>
+
+</html>

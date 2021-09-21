@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>HOME - PuruSid</title>
+	<meta charset="UTF-8">
+	<style>
+		.sidebar {
+			position: fixed;
+			height: 100vh;
+			width: 5%;
+			left: 0;
+			top: 0;
+			margin: 0;
+			background-color: cyan
+		}
+
+		.sidebar button {
+			height: 10vh;
+			width: 100%;
+			background-color: greenyellow;
+			font-size: 5vh;
+			padding: 0;
+			margin: 0;
+			cursor: pointer;
+		}
+
+		.window {
+			height: 100vh;
+			width: 95%;
+			position: fixed;
+			left: 5%;
+			top: 0;
+			background-color: white;
+			z-index: 200000000000000000000000000000000000000000000000000000;
+		}
+
+		.window .icoleft {
+			height: 10vh;
+			width: 30vh;
+			font-size: 3vh;
+			margin: 0;
+			padding: 0;
+			font-weight: bolder;
+		}
+
+		.window h1 {
+			width: 100%;
+			background-color: aqua;
+		}
+
+		#home {
+			height: 100vh;
+			width: 95%;
+			position: fixed;
+			left: 5%;
+			top: 0;
+			overflow: scroll;
+		}
+
+		#home button {
+			height: 10vh;
+			width: 10vh;
+			background-color: greenyellow;
+			font-size: 5vh;
+			cursor: pointer;
+		}
+
+		#home h1,
+		#home button {
+			display: inline-block;
+		}
+
+		#home h1 {
+			width: 20vh;
+		}
+
+		#header-main {
+			font-size: 10vh;
+			font-weight: bolder;
+			padding: 0;
+			margin: 0;
+			height: 30vh;
+			width: 40%;
+			text-align: center;
+			display: block;
+		}
+	</style>
+	<script>
+		function hide() {
+			var apps = document.getElementsByClassName('window');
+			for (var i = 0; i < apps.length; i++) {
+				apps[i].style.visibility = 'hidden';
+			}
+		}
+	</script>
+</head>
+
+<body onload="hide();">
+	<div class="sidebar">
+		<button onclick="hide();document.getElementById('desk').style.visibility = 'visible'">🖥️</button>
+		<br>
+		<button onclick="hide();document.getElementById('editor').style.visibility = 'visible'">📝</button>
+		<br>
+		<button onclick="hide();document.getElementById('fun').style.visibility = 'visible'">🤣</button>
+		<br>
+		<button onclick="hide();document.getElementById('games').style.visibility = 'visible'">🎳</button>
+		<br>
+		<button onclick="hide();document.getElementById('music').style.visibility = 'visible'">🎸</button>
+		<br>
+		<button onclick="hide();document.getElementById('tools').style.visibility = 'visible'">🛠</button>
+		<br>
+	</div>
+	<button onclick="hide();"
+		style="bottom:0;z-index:10000000000000000000;position: fixed; width:5%;left:0;height: 10vh;font-size: 5vh;">🏠
+	</button>
+	<div>
+		<embed src="tools/desk/index.html" class="window" id="desk">
+		<div class="window" id="editor">
+			<h1>EDITORS</h1>
+			<a target="_blank" href="editor/text"><button class="icoleft">TEXT EDITOR</button></a>
+			<br>
+			<a target="_blank" href="editor/html"><button class="icoleft">HTML EDITOR</button></a>
+			<br>
+			<a target="_blank" href="editor/draw"><button class="icoleft">DRAW AND PAINT</button></a>
+		</div>
+		<div class="window" id="fun">
+			<h1>FUN</h1>
+			<a target="_blank" href="fun/riddles/"><button class="icoleft">RIDDLES</button></a>
+			<br>
+			<a target="_blank" href="fun/cursors/"><button class="icoleft">CURSORS</button></a>
+		</div>
+		<div class="window" id="games">
+			<h1>GAMES</h1>
+			<a target="_blank" href="games/cube"><button class="icoleft">CUBE</button></a>
+			<br>
+			<a target="_blank" href="games/numgame"><button class="icoleft">NUMBER GUESS</button></a>
+			<br>
+			<a target="_blank" href="games/race"><button class="icoleft">RACE v1</button></a>
+			<br>
+			<a target="_blank" href="games/race2"><button class="icoleft">RACEv2</button></a>
+			<br>
+			<a target="_blank" href="games/space"><button class="icoleft">SPACE</button></a>
+		</div>
+		<div class="window" id="music">
+			<h1>MUSICAL INSTRUMENTS</h1>
+			<a target="_blank" href="music/drum"><button class="icoleft">DRUMS</button></a>
+			<br>
+			<a target="_blank" href="music/guitar"><button class="icoleft">GUITAR</button></a>
+			<br>
+			<a target="_blank" href="music/piano"><button class="icoleft">PIANO</button></a>
+			<br>
+			<a target="_blank" href="music/tambura"><button class="icoleft">TAMBURA DROID</button></a>
+		</div>
+		<div class="window" id="tools">
+			<h1>TOOLS</h1>
+			<a target="_blank" href="tools/agecalc"><button class="icoleft">AGE CALC</button></a>
+			<br>
+			<a target="_blank" href="tools/calc"><button class="icoleft">CALCULATOR</button></a>
+			<br>
+			<a target="_blank" href="tools/mirror"><button class="icoleft">MIRROR</button></a>
+			<br>
+			<a target="_blank" href="tools/agecalc"><button class="icoleft">TO-DO LISTS</button></a>
+		</div>
+		<div id="home">
+			<img src="assets/favicon.png" style='width: 30vh'>
+			<br>
+			<h1>DESKS</h1>
+			<button onclick="hide();document.getElementById('desk').style.visibility = 'visible'">🖥️</button>
+			<h1>EDITORS</h1>
+			<button onclick="hide();document.getElementById('editor').style.visibility = 'visible'">📝</button>
+			<h1>FUN</h1>
+			<button onclick="hide();document.getElementById('fun').style.visibility = 'visible'">🤣</button>
+			<br>
+			<h1>GAMES</h1>
+			<button onclick="hide();document.getElementById('games').style.visibility = 'visible'">🎳</button>
+			<h1>MUSIC</h1>
+			<button onclick="hide();document.getElementById('music').style.visibility = 'visible'">🎸</button>
+			<h1>TOOLS</h1>
+			<button onclick="hide();document.getElementById('tools').style.visibility = 'visible'">🛠</button>
+			<h1 style="width: 100%;background-color: grey;">CREDITS</h1>
+			<h2>
+			<p>sdh-1234: HTML, CSS, JS, C, ASM, Shell</p>
+			<p>pscodr: HTML, CSS, JS, QBASIC, code.org</p>
+			<p>ayush-kumar7: C, C++, HTML, CSS, JS</p>
+			<p>not-mrbeast: HTML, CSS, JS, QBASIC, code.org</p>
+			<p>shcodr & ragi: ideas, QBASIC, code.org</p>
+			</h2>
+		</div>
+	</div>
+</body>
+
+</html>
