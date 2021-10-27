@@ -30,12 +30,12 @@
 
         .scene {
             animation:
-                sceneRotateLeft var(--turnSpeed) infinite linear,
-                sceneRotateRight var(--turnSpeed) infinite linear,
-                sceneMoveForward var(--speed) infinite linear,
-                sceneMoveBack var(--speed) infinite linear,
-                jump 250s infinite linear,
-                jumpdown 50s infinite linear;
+                sceneRotateLeft var(--turnSpeed) linear,
+                sceneRotateRight var(--turnSpeed) linear,
+                sceneMoveForward var(--speed) linear,
+                sceneMoveBack var(--speed) linear,
+                jump 25s linear,
+                jumpdown 50s linear;
             animation-play-state: paused, paused, paused, paused, paused, paused;
             top: 40vh;
             left: 40vw;
@@ -43,6 +43,26 @@
             transform-style: preserve-3d;
             z-index: -1000;
             transform-origin: 0px 0px;
+            transform: translateZ(-100em);
+        }
+
+
+        .cube {
+            animation:
+                sceneRotateLeft var(--turnSpeed) linear,
+                sceneRotateRight var(--turnSpeed) linear,
+                sceneMoveForward var(--speed) linear,
+                sceneMoveBack var(--speed) linear,
+                jump 25s linear,
+                jumpdown 50s linear;
+            animation-play-state: paused, paused, paused, paused, paused, paused;
+            top: 40vh;
+            left: 40vw;
+            position: fixed;
+            transform-style: preserve-3d;
+            z-index: -1000;
+            transform-origin: 0px 0px;
+            transform: translateZ(-100em);
         }
 
         @keyframes sceneRotateLeft {
@@ -71,7 +91,7 @@
 
         @keyframes jump {
             to {
-                transform: translateY(1000em);
+                transform: translateY(25em);
             }
         }
 
@@ -112,7 +132,7 @@
         }
 
         .backwall2 {
-            transform: translateZ(100em);
+            transform: translateZ(-1000em);
             height: 10rem;
             width: 10rem;
             left: 300rem;
@@ -140,8 +160,8 @@
                 translate(-50%, -50%) rotateX(90deg) translateZ(15em);
         }
 
-        .frontWall,
-        .backwall {
+        .scene>.frontWall,
+        .scene>.backwall {
             clip-path: polygon(0% 0%, 0% 100%, 33% 100%, 33% 39%, 67% 39%, 68% 100%, 33% 100%, 33% 100%, 100% 100%, 100% 0%);
         }
 
@@ -236,7 +256,8 @@
 
 <body>
     <div class="start" id="startscr">
-        <h1 style="color:#000">USE THE ARROWS ON THE TOP TO NAVIGATE <br>FIND THE BOX AND CLICK ON IT</h1>
+        <h6 style="width: 100%;text-align: center;">1. USE THE ARROWS TO NAVIGATE <br> 2. WALK FRONT BACK LEFT RIGHT(NO
+            TURNS) <br> 3. JUMP UP AND DOWN</h6>
         <button style="position:fixed;left:0;width:100%;top:50vh"
             onclick="document.getElementById('startscr').style.visibility = 'hidden'">
             <h1>START</h1>
@@ -259,12 +280,20 @@
         <div class="floor"></div>
         <img src="data:image/png;base64,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"
             class="backwall2" usemap="#imgmap">
+        <div class="cube" style="transform: translateZ(-1000em) translateX(1000em);">
+            <div class="ceiling"></div>
+            <div class="frontWall"></div>
+            <div class="leftWall"></div>
+            <div class="rightWall"></div>
+            <div class="backwall"></div>
+            <div class="floor"></div>
+        </div>
     </div>
     <map name="imgmap" id="imgmap">
         <area shape="rect" coords="0,0,216,233" href="win/" alt="THIS IS THE BOX">
     </map>
     <div id="controls">
-        <a href="#moveForward"><b class="hiddenstuff">&nbsp;&nbsp;&nbsp;&nbsp;</b>&uArr;</a>
+        <a href="#moveForward">&nbsp;&nbsp;&nbsp;&nbsp;&uArr;</a>
         <br>
         <a href="#turnLeft">&lAarr;</a>
         <a href="#stop">&curren;</a>
@@ -272,8 +301,6 @@
         <a href="#jump">&#9650;</a>
         <a href="#jumpdown">&#9660;</a>
         <br>
-        <a href="#moveBack"><b class="hiddenstuff">&nbsp;&nbsp;&nbsp;&nbsp;</b>&dArr;</a>
+        <a href="#moveBack">&nbsp;&nbsp;&nbsp;&nbsp;&dArr;</a>
     </div>
-
-
 </body>
