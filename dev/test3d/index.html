@@ -33,8 +33,10 @@
                 sceneRotateLeft var(--turnSpeed) infinite linear,
                 sceneRotateRight var(--turnSpeed) infinite linear,
                 sceneMoveForward var(--speed) infinite linear,
-                sceneMoveBack var(--speed) infinite linear;
-            animation-play-state: paused, paused, paused, paused;
+                sceneMoveBack var(--speed) infinite linear,
+                jump 50s infinite linear,
+                jumpdown 50s infinite linear;
+            animation-play-state: paused, paused, paused, paused, paused, paused;
             top: 40vh;
             left: 40vw;
             position: fixed;
@@ -67,6 +69,17 @@
             }
         }
 
+        @keyframes jump {
+            to {
+                transform: translateY(200em);
+            }
+        }
+
+        @keyframes jumpdown {
+            to {
+                transform: translateY(0em);
+            }
+        }
 
         .ceiling,
         .frontWall,
@@ -134,34 +147,46 @@
 
         :target.turnLeft~.scene,
         #turnLeft:focus~.scene {
-            animation-play-state: running, paused, paused, paused;
+            animation-play-state: running, paused, paused, paused, paused, paused;
         }
 
         :target.turnRight~.scene,
         #turnRight:focus~.scene {
-            animation-play-state: paused, running, paused, paused;
+            animation-play-state: paused, running, paused, paused, paused, paused;
         }
 
         :target.moveBack~.scene,
         #moveBack:focus~.scene {
-            animation-play-state: paused, paused, paused, running;
+            animation-play-state: paused, paused, paused, running, paused, paused;
         }
 
         :target.moveForward~.scene,
         #moveForward:focus~.scene {
-            animation-play-state: paused, paused, running, paused;
+            animation-play-state: paused, paused, running, paused, paused, paused;
         }
 
         :target.stop~.scene,
         #stop:focus~.scene {
-            animation-play-state: paused, paused, paused, paused;
+            animation-play-state: paused, paused, paused, paused, paused, paused;
+        }
+
+        :target.jump~.scene,
+        #jump:focus~.scene {
+            animation-play-state: paused, paused, paused, paused, running, paused;
+        }
+
+        :target.jumpdown~.scene,
+        #jump:focus~.scene {
+            animation-play-state: paused, paused, paused, paused, paused, running;
         }
 
         #moveForward,
         #turnLeft,
         #stop,
         #turnRight,
-        #moveBack {
+        #moveBack,
+        #jump,
+        #jumpdown {
             position: absolute;
             left: -5000px;
             top: -5000px;
@@ -222,6 +247,8 @@
     <a tabindex="5" accesskey="X" class="stop" id="stop" href="#stop"></a>
     <a tabindex="3" accesskey="D" class="turnRight" id="turnRight" href="#turnRight"></a>
     <a tabindex="4" accesskey="S" class="moveBack" id="moveBack" href="#moveBack"></a>
+    <a tabindex="6" accesskey="E" class="jump" id="jump" href="#stop"></a>
+    <a href="#stop" id="jumpdown" class="jumpdown"></a>
 
     <div class="scene">
         <div class="ceiling"></div>
@@ -242,6 +269,8 @@
         <a href="#turnLeft">&lAarr;</a>
         <a href="#stop">&curren;</a>
         <a href="#turnRight">&rAarr;</a>
+        <a href="#jump">&#9650;</a>
+        <a href="#jumpdown">&#9660;</a>
         <br>
         <a href="#moveBack"><b class="hiddenstuff">&nbsp;&nbsp;&nbsp;&nbsp;</b>&dArr;</a>
     </div>
