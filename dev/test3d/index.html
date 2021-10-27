@@ -40,17 +40,18 @@
             position: fixed;
             transform-style: preserve-3d;
             z-index: -1000;
+            transform-origin: 0px 0px;
         }
 
         @keyframes sceneRotateLeft {
             to {
-                transform: rotateY(-3600deg);
+                transform: translateX(3600em);
             }
         }
 
         @keyframes sceneRotateRight {
             to {
-                transform: rotateY(3600deg);
+                transform: translateX(-3600em);
             }
         }
 
