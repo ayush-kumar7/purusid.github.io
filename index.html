@@ -1,51 +1,323 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>
-		HOME - PuruSid
-	</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME - PuruSid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #00adef;
+        }
+
+        .taskbar {
+            width: 100%;
+            height: 3rem;
+            background-color: #26324a;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        #menubtn {
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            height: 3rem;
+            width: 3rem;
+            background-image: url('assets/favicon.png');
+            background-size: 100%;
+        }
+
+        .icon {
+            height: 7rem;
+            width: 6rem;
+            margin: 0.2em;
+            border: solid 2px black;
+        }
+
+        .iconimg {
+            height: 6rem;
+            width: 6rem;
+        }
+
+        .icontext {
+            height: 1rem;
+            width: 6rem;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            padding: 0;
+            margin: 0;
+        }
+
+        .icons {
+            display: table-row;
+        }
+
+        .icon {
+            display: table-cell;
+        }
+
+        #menu {
+            position: fixed;
+            bottom: 3rem;
+            height: 70vh;
+            width: 30vw;
+            background: #26324a;
+            color: white;
+            visibility: hidden;
+        }
+
+        #menubtn:checked+#menu {
+            visibility: visible;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #myInput {
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 70%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #myUL {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #myUL li a {
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            /* Prevent double borders */
+            background-color: #f6f6f6;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            display: block
+        }
+
+        #myUL li a:hover:not(.header) {
+            background-color: #eee;
+        }
+
+        #search {
+            width: 30vw;
+            height: 70vh;
+            bottom: 3rem;
+            position: fixed;
+            visibility: hidden;
+            left: 0;
+            overflow: scroll;
+        }
+
+        #searchbtn {
+            height: 3rem;
+            position: fixed;
+            width: 3rem;
+            left: 3.5rem;
+            background: url('assets/search.png');
+            background-size: 100%;
+        }
+
+        #bellbtn {
+            height: 3rem;
+            position: fixed;
+            width: 3rem;
+            right: 0;
+            background: url('assets/bell.jpg');
+            background-size: 100%;
+        }
+
+        .new {
+            width: 25vw;
+            height: calc(100vh - 3rem);
+            position: fixed;
+            background: #26324a;
+            right: 0;
+            top: 0;
+            color: white;
+            visibility: hidden;
+        }
+
+        .new a {
+            color: white;
+        }
+
+        .new ul {
+            margin: 1em;
+        }
+    </style>
 </head>
 
-<body link="#000" alink="#017bf5" vlink="#000" bgcolor="#add8e6">
-	<br>
-	<h3 align="center">
-		<font face="cinzel" size="4">
-			<a href="play/">PLAY</a>&nbsp;
-			<a href="os/">BOOTABLES</a>&nbsp;
-			<a href="music/">MUSIC</a>&nbsp;
-			<a href="tools/">TOOLS</a>&nbsp;
-		</font>
-	</h3>
-	<br><br><br><br><br><br><br><br><br><br>
-	<h1 align="center">
-		<font face="Lato" color="#017bf5" size="7">
-			PuruSid
-		</font>
-	</h1>
-	<h3 align="center">
-		<font face="Lato" color="#000" size="5">
-			<a href="play/">PLAY</a>&nbsp;
-			<a href="os/">BOOTABLES</a>&nbsp;
-			<a href="music/">MUSIC</a>&nbsp;
-			<a href="tools/">TOOLS</a>&nbsp;
-		</font>
-	</h3>
-	<h1 style="color:#017bf5">FEATURED</h1>
-	<h2>
-		<a href="play/xo/">TIC-TAC-TOE</a>
-		<br>
-		<a href="play/space/">SPACECRAFT</a>
-		<br>
-		<a href="textedit/">TEXT EDITOR</a>
-		<br>
-		<a href="tools/paint/">PAINT</a>
-		<br>
-		<a href="tools/touchpaint/">PAINT APP FOR MOBILE</a>
-		<br>
-		<a href="https://studio.code.org/projects/applab/nAvvZdUlvt1Yy_0vOaNQVW8OPovTCbQCsKAZsOCBLlI">CHAT APP</a>
-	</h2>
+<body>
+    <div class="icons">
+        <a class="icon" href="play">
+            <img src="assets/play.jpg" alt="PLAY IMAGE" class="iconimg">
+            <div class="icontext">PLAY</div>
+        </a>
+        <a class="icon" href="tools">
+            <img src="assets/tools.jpg" alt="PLAY IMAGE" class="iconimg">
+            <div class="icontext">TOOLS</div>
+        </a>
+        <a class="icon" href="os">
+            <img src="assets/cd.jpg" alt="PLAY IMAGE" class="iconimg">
+            <div class="icontext">OS</div>
+        </a>
+        <a class="icon" href="music">
+            <img src="assets/music.webp" alt="PLAY IMAGE" class="iconimg">
+            <div class="icontext">MUSIC</div>
+        </a>
+        <a class="icon" href="https://github.com/purusid/purusid.github.io/tree/main/dev">
+            <img src="assets/gear.png" alt="PLAY IMAGE" class="iconimg">
+            <div class="icontext">UNDER DEV</div>
+        </a>
+    </div>
+    <div class="taskbar">
+        <button id="menubtn" onclick="myFunction()"></button>
+        <button id="searchbtn" onclick="showsearch()"></button>
+        <button id="bellbtn" onclick="shownew()"></button>
+    </div>
+    <div class="new" id="new">
+        <h1>What's new:</h1>
+        <b>
+            <ul>
+                <li><a href="dev/test3d/">3d space test</a></li>
+                <li><a href="dev/newgame/">just random stuff</a></li>
+                <li><a href="play/car3d">Light CSS&JS car game</a></li>
+            </ul>
+        </b>
+    </div>
+    <div class="menu" id="menu">
+        <h1>PuruSid - FrCodeCo</h1>
+        <h2>We are a group of friends.. coding for fun..</h2>
+        <br>
+        <b>
+            <ul>
+                <li>HTML: Expert</li>
+                <li>XML: Expert</li>
+                <li>CSS: Intermediate</li>
+                <li>JavaScript: Beginner</li>
+                <li>x86 Assembly: Beginner</li>
+                <li>C/C++: Beginner</li>
+                <li>PHP: like one line.. :P</li>
+                <li>VBScript: Beginner</li>
+                <li>some other: just know it exists</li>
+            </ul>
+        </b>
+    </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("menu");
+            if (x.style.visibility == "hidden") {
+                x.style.visibility = "visible";
+            } else {
+                x.style.visibility = "hidden";
+            }
+        }
+        function showsearch() {
+            var x = document.getElementById("search");
+            if (x.style.visibility == "hidden") {
+                x.style.visibility = "visible";
+            } else {
+                x.style.visibility = "hidden";
+            }
+        }
+        function shownew() {
+            var x = document.getElementById("new");
+            if (x.style.visibility == "hidden") {
+                x.style.visibility = "visible";
+            } else {
+                x.style.visibility = "hidden";
+            }
+        }
+    </script>
+    <div id="search">
+        <h2>Search Our Stuff</h2>
+
+        <input type="text" id="myInput" placeholder="Search for stuff.." title="Type in a name">
+
+        <button onclick="search()"
+            style="width: 30%;float:right;height:45px;font-size: 16px;text-align: center;">search</button>
+
+        <ul id="myUL">
+            <li><a href="play/blocky3d/">play/blocky3d</a></li>
+            <li><a href="play/breakout/">play/breakout</a></li>
+            <li><a href="play/car3d/">play/car3d</a></li>
+            <li><a href="play/colorlink/">play/colorlink</a></li>
+            <li><a href="play/cube/">play/cube</a></li>
+            <li><a href="play/cursors/">play/cursors</a></li>
+            <li><a href="play/dice/">play/dice</a></li>
+            <li><a href="play/invaders/">play/invaders</a></li>
+            <li><a href="play/jumpx3/">play/jumpx3</a></li>
+            <li><a href="play/minesweeper/">play/minesweeper</a></li>
+            <li><a href="play/moto/">play/moto</a></li>
+            <li><a href="play/numgame/">play/numgame</a></li>
+            <li><a href="play/overlap/">play/overlap</a></li>
+            <li><a href="play/pong/">play/pong</a></li>
+            <li><a href="play/race/">play/race</a></li>
+            <li><a href="play/riddles/">play/riddles</a></li>
+            <li><a href="play/snake/">play/snake</a></li>
+            <li><a href="play/space/">play/space</a></li>
+            <li><a href="play/tetris/">play/tetris</a></li>
+            <li><a href="play/toss/">play/toss</a></li>
+            <li><a href="play/up2sky/">play/up2sky</a></li>
+            <li><a href="play/xo/">play/xo</a></li>
+            <li><a href="tools/agecalc/">tools/agecalc</a></li>
+            <li><a href="tools/mirror">tools/mirror</a></li>
+            <li><a href="tools/touchpaint/">tools/touchpaint</a></li>
+            <li><a href="tools/colorpick/">tools/colorpick</a></li>
+            <li><a href="tools/desk/">tools/desk</a></li>
+            <li><a href="tools/calc/">tools/calc</a></li>
+            <li><a href="tools/paint/">tools/paint</a></li>
+            <li><a href="tools/textedit/">tools/textedit</a></li>
+            <li><a href="tools/todo/">tools/todo</a></li>
+            <li><a href="os/asm/boot.img">os/asm/boot.img</a></li>
+            <li><a href="os/asm/cursor_text.img">os/asm/cursor_text.img</a></li>
+            <li><a href="os/asm/greetOS.img">os/asm/greetOS.img</a></li>
+            <li><a href="os/asm/invaders.img">os/asm/invaders.img</a></li>
+            <li><a href="music/drum/">music/drum</a></li>
+            <li><a href="music/guitar/">music/guitar</a></li>
+            <li><a href="music/piano/v1/">music/piano/v1</a></li>
+            <li><a href="music/piano/v2/">music/piano/v2</a></li>
+            <li><a href="music/tambura/">music/tambura</a></li>
+        </ul>
+    </div>
+    <script>
+        function search() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+
 </body>
 
 </html>
